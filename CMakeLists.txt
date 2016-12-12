@@ -7,6 +7,7 @@ include(functions)
 include(options)
 
 add_definitions(-D_VARIADIC_MAX=10)
+add_subdirectory(thirdparty)
 add_subdirectory(docs)
 add_subdirectory(tests)
 add_subdirectory(sources)
