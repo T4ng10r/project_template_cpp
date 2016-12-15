@@ -2,3 +2,11 @@ tags
 cscope.*
 CMakeLists.txt.u*
 
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
