@@ -1,4 +1,4 @@
-#include <QApplication>
+#include <QtWidgets/QApplication>
 #include <QThread>
 #include <memory>
 //#include <tools/loggers.h>
