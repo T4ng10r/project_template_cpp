@@ -12,7 +12,7 @@ public:
     typedef std::shared_ptr<DataThread> ptr;
 
     DataThread();
-    ~DataThread() = default;
+    ~DataThread();
     boost::property_tree::ptree get_settings();
 private:
     friend class DataThreadPrivate;
