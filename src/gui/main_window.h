@@ -1,5 +1,5 @@
 #pragma once
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include <memory>
 #include <data/data_thread.h>
 //#include <logging_base.h>
@@ -12,7 +12,7 @@ class MainWindow : public QMainWindow //, public LoggingBase
 
 public:
   MainWindow(DataThread::ptr data_thread);
-  ~MainWindow() = default;
+  ~MainWindow();
 protected:
   std::unique_ptr<MainWindowPrivate> _pimpl;
 };
