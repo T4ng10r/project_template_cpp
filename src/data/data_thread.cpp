@@ -24,9 +24,9 @@ DataThreadPrivate::DataThreadPrivate(DataThread *pub) : _pub(pub) {
 }
 
 void DataThreadPrivate::load_settings(QString file) {
-  logger.log(
-      log4cplus::INFO_LOG_LEVEL,
-      str(boost::format("Loading properties file (%1%)") % file.toStdString()));
+  //logger.log(
+  //    log4cplus::INFO_LOG_LEVEL,
+  //    str(boost::format("Loading properties file (%1%)") % file.toStdString()));
   using boost::property_tree::ptree;
 
   try {
