@@ -1,5 +1,5 @@
-IF( "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
-    "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+IF( CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR
+    CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage")
   SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage ")
 endif()
