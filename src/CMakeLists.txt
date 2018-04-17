@@ -20,7 +20,7 @@ add_library(${PROJECT_NAME}_lib STATIC ${PROJECT_SRCS} )
 #set(${PROJECT_NAME}_lib ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
 
 target_link_libraries(${PROJECT_NAME}_lib log4cplus
-                      Qt5::Core gcov)
+                      Qt5::Core ${GCOV_LIBRARY})
 
 
 add_executable(${PROJECT_NAME}
