@@ -1,21 +1,23 @@
-project(LogsHelper)
-include_directories(${Qt5Core_INCLUDE_DIRS})
+project(logs_helper)
 
-include_directories(${Boost_INCLUDE_DIR}
-                    ${CMAKE_CURRENT_SOURCE_DIR}
-                    ${CMAKE_SOURCE_DIR}/include
-                    ${log4cplus_SOURCE_DIR}/include
-                    ${log4cplus_BINARY_DIR}/include)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 SET ( TOOLS_SRC
-  qtTools.cpp
+  logging_base.cpp
+  logging_base.h
   loggers.cpp
-  qtTools.h
   loggers.h  )
 
 IF (WIN32)
   SOURCE_GROUP(tools FILES ${TOOLS_SRC})
 endif(WIN32)
 
-add_library(logs_helper_lib STATIC ${TOOLS_SRC} )
-target_link_libraries(logs_helper_lib ${LOGGER_LIBRARY} ${Boost_LIBRARIES} )
+add_library(${PROJECT_NAME}_lib STATIC ${TOOLS_SRC} )
+
+target_include_directories(${PROJECT_NAME}_lib SYSTEM PUBLIC
+    ${CONAN_INCLUDE_DIRS_SPDLOG}
+    ${CONAN_INCLUDE_DIRS_FMT}
+    ${Qt5Core_INCLUDE_DIRS}
+    )
+
+target_link_libraries(${PROJECT_NAME}_lib Qt5::Core ${CONAN_LIBS_FMT} ${CONAN_LIBS_SPDLOG})

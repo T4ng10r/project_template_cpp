@@ -8,13 +8,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 include_directories($ENV{QTDIR}
-                    ${Boost_INCLUDE_DIR}
                     ${Qt5Test_INCLUDE_DIRS}
-                    ${tools_SOURCE_DIR}
                     ${PROJECT_SOURCE_DIR}/src
-                    ${PROJECT_SOURCE_DIR}/tools
-                    ${log4cplus_SOURCE_DIR}/include
-                    ${log4cplus_BINARY_DIR}/include)
+                    ${PROJECT_SOURCE_DIR}/tools)
 
 #####################
 SET ( SOURCES_MAIN
@@ -25,6 +21,7 @@ add_executable(${PROJECT_NAME}_ut ${TEST_SRCS})
 set_property(TARGET ${PROJECT_NAME}_ut PROPERTY CXX_STANDARD 11)
 
 target_link_libraries(${PROJECT_NAME}_ut Qt5::Test ${PROJECT_NAME}_lib
-                      log4cplus logs_helper_lib)
+                      logs_helper_lib)
+target_include_directories(${PROJECT_NAME}_ut PUBLIC ${Qt5Core_INCLUDE_DIRS})
 
 ADD_TEST(NAME UT COMMAND ${PROJECT_NAME}_ut)

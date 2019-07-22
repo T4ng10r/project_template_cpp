@@ -4,10 +4,10 @@
 
 enum eLogLevel
 {
-	eInfoLogLevel=0,
-	eWarningLogLevel,
-	eDebugLogLevel,
-	eErrorLogLevel
+  eDebugLogLevel=10000,
+  eInfoLogLevel=20000,
+  eWarningLogLevel=30000,
+  eErrorLogLevel=40000
 };
 
 enum eLoggerType
@@ -16,6 +16,7 @@ enum eLoggerType
 	eGUI,
 	eSlots
 };
+
 void create_loggers(const std::string &strPluginLogName = std::string());
 void destroyLoggers();
 void printLog(eLoggerType loggerType, eLogLevel debugLevel, const std::string &strMsg);

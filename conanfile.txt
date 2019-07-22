@@ -1,0 +1,11 @@
+[requires]
+gtest/1.8.1@bincrafters/stable
+spdlog/1.3.1@bincrafters/stable
+[options]
+fmt:shared=True
+[generators]
+cmake
+
+[imports]
+bin, *.dll -> ./bin
+lib, *.dll -> ./bin

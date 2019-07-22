@@ -1,11 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0.00)
 ENABLE_TESTING()
-PROJECT()
+PROJECT(template_project)
 
 # Project Info
 SET(APPLICATION_NAME "projet name")
 SET(APPLICATION_CODENAME "${PROJECT_NAME}")
-SET(APPLICATION_COPYRIGHT_YEARS "2017")
+SET(APPLICATION_COPYRIGHT_YEARS "2019")
 SET(APPLICATION_VERSION_MAJOR 0)
 SET(APPLICATION_VERSION_MINOR 1)
 SET(APPLICATION_VERSION_PATCH 0)
@@ -22,7 +22,6 @@ SET(MAINFOLDER ${PROJECT_SOURCE_DIR})
 ## Project Search Paths
 LIST(APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}")
 LIST(APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/tools")
-LIST(APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/thirdparty")
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${MAINFOLDER}/tools/cmake")
 INCLUDE_DIRECTORIES("${MAINFOLDER}/include")
 include(functions)
@@ -50,19 +49,19 @@ FOREACH(CONFIGINPUT ${CONFIGINPUTS})
         CONFIGURE_FILE("${CONFIGINPUT}" "${CONFIGOUTPUT1}")
 ENDFOREACH(CONFIGINPUT ${CONFIGINPUTS})
 
-
-## Project Dependencies
-FIND_PACKAGE(Boost 1.57 COMPONENTS "system"  REQUIRED)
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
-LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
+#Project dependecies
+if (EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    conan_basic_setup()
+else ()
+    message(WARNING "The file conanbuildinfo.cmake doesn't exist, you have to run conan install first")
+endif ()
 
 ## Project Sources
-FILE(GLOB_RECURSE PROJECT_SRCS ${MAINFOLDER}/src/*.cpp ${MAINFOLDER}/src/*.h)
 FILE(GLOB_RECURSE TEST_SRCS ${MAINFOLDER}/tests/*.cpp ${MAINFOLDER}/tests/*.h)
 
 add_definitions(-D_VARIADIC_MAX=10)
 add_subdirectory(docs)
-add_subdirectory(thirdparty)
 add_subdirectory(tools/logs_helper)
 add_subdirectory(src)
 add_subdirectory(tests)

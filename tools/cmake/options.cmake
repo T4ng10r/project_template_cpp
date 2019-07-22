@@ -2,7 +2,6 @@ cmake_policy(SET CMP0020 NEW )
 
 find_package(Qt5Widgets)
 find_package(Qt5Core)
-find_package(Qt5Xml)
 find_package(Qt5Test)
 
 set(ENV{QTEST_COLORED} 1)
@@ -12,23 +11,15 @@ set(ENV{QTEST_COLORED} 1)
 SET(Boost_USE_MULTITHREADED ON)
 SET(Boost_USE_STATIC_LIBS ON)
 #SET(Boost_USE_STATIC_RUNTIME OFF)
-SET(LOG4CPLUS_BUILD_TESTING OFF)
-SET(LOG4CPLUS_QT5 ON)
 SET(WITH_UNIT_TESTS OFF)
-find_package(Boost REQUIRED COMPONENTS date_time system filesystem unit_test_framework) #thread system date_time chrono)
-
-SET ( LOG4CPLUS_LIBRARY_NAME "log4cplus" )
-
-add_definitions(-DUSE_LOG4CPLUS)
-SET(LOGGER_LIBRARY ${LOG4CPLUS_LIBRARY_NAME})
-
+#find_package(Boost REQUIRED COMPONENTS date_time system filesystem unit_test_framework) #thread system date_time chrono)
 
 if (MSVC)
-    set ( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /MP")
-    #SET(CMAKE_CXX_FLAGS "/WL /MP /GR /EHsc" )
-    message(STATUS "Added parallel build arguments to CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+  set ( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /MP")
+  #SET(CMAKE_CXX_FLAGS "/WL /MP /GR /EHsc" )
+   message(STATUS "Added parallel build arguments to CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 endif()
 
 if (UNIX)
-	set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
